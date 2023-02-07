@@ -56,3 +56,58 @@ const LoginForm = () => {
         password: '',
       });
     };
+
+    // implementing a login form using bootstrap form component.
+    return (
+        <>
+          <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+            <Alert
+              dismissible
+              onClose={() => setShowAlert(false)}
+              show={showAlert}
+              variant="danger"
+            >
+              There was an error with your login credentials.
+            </Alert>
+            <Form.Group>
+              <Form.Label htmlFor="email">Email</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Your email"
+                name="email"
+                onChange={handleInputChange}
+                value={userFormData.email}
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                Your email is required!
+              </Form.Control.Feedback>
+            </Form.Group>
+    
+            <Form.Group>
+              <Form.Label htmlFor="password">Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Your password"
+                name="password"
+                onChange={handleInputChange}
+                value={userFormData.password}
+                required
+              />
+              <Form.Control.Feedback type="invalid">
+                Password is required!
+              </Form.Control.Feedback>
+            </Form.Group>
+            <Button
+              disabled={!(userFormData.email && userFormData.password)}
+              type="submit"
+              variant="success"
+            >
+              Submit
+            </Button>
+          </Form>
+        </>
+      );
+    };
+    
+    export default LoginForm;
