@@ -59,7 +59,7 @@ const SavedBooks = () => {
             ? `Viewing ${userData.savedBooks.length} saved ${
                 userData.savedBooks.length === 1 ? "book" : "books"
               }:`
-            : "You have no saved books!"}
+            : "There are no saved books."}
         </h2>
         <CardColumns>
           {userData.savedBooks?.map((book) => {
