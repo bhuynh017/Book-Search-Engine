@@ -23,7 +23,11 @@ const userSchema = new Schema(
         type: String,
         required: true,
       },
-   
       savedBooks: [bookSchema],
     },
+    {
+      toJSON: {
+        virtuals: true,
+      },
+    }
 )
