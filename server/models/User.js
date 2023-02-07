@@ -46,3 +46,12 @@ userSchema.pre("save", async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
+
+// creating bookCount and returning the length of saved books.
+userSchema.virtual("bookCount").get(function () {
+  return this.savedBooks.length;
+});
+
+const User = model("User", userSchema);
+
+module.exports = User;
