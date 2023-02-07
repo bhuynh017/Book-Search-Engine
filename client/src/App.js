@@ -29,3 +29,23 @@ import Navbar from './components/Navbar';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
+
+// creating Authentication link for Apollo client.
+// setContext allows for the creation of a link
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+// Creating an ApolloClient instance.
+const client = new ApolloClient({
+  // Concatenating authlink and httpLink. The links will be using GraphQl request.
+  link: authLink.concat(httpLink),
+  // storing results of GraphQL.
+  cache: new InMemoryCache(),
+});
